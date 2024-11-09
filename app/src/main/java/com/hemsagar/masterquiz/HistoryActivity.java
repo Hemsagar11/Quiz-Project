@@ -46,9 +46,10 @@ public class HistoryActivity extends AppCompatActivity {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             int score = document.getLong("score").intValue();
                             int totalQuestions = document.getLong("totalQuestions").intValue();
+                            String topic = document.getString("topic");
                             long date = document.getLong("date");
 
-                            historyList.add(new HistoryItem(score, totalQuestions, date));
+                            historyList.add(new HistoryItem(score, totalQuestions, date,topic));
                         }
                         historyAdapter.notifyDataSetChanged();
                     } else {

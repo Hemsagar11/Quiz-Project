@@ -34,6 +34,7 @@ public class ScoreSummaryActivity extends AppCompatActivity {
         // Retrieve score and total questions from intent
         int score = getIntent().getIntExtra("SCORE", 0);
         int totalQuestions = getIntent().getIntExtra("TOTAL_QUESTIONS", 0);
+        String topic = getIntent().getStringExtra("TOPIC");
 
         // Calculate score percentage
         int scorePercentage = (int) ((score / (double) totalQuestions) * 100);
@@ -63,6 +64,7 @@ public class ScoreSummaryActivity extends AppCompatActivity {
         scoreData.put("score", score);
         scoreData.put("totalQuestions", totalQuestions);
         scoreData.put("date", System.currentTimeMillis());
+        scoreData.put("topic", getIntent().getStringExtra("TOPIC"));
 
         db.collection("history").add(scoreData)
                 .addOnSuccessListener(documentReference -> {

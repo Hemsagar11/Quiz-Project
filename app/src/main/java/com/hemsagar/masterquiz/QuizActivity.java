@@ -27,7 +27,8 @@ public class QuizActivity extends AppCompatActivity {
     private int currentQuestionIndex = 0;
     private int score = 0;
     private CountDownTimer countDownTimer;
-    private static final int QUESTION_TIME_LIMIT = 15000; // 15 seconds
+    private static final int QUESTION_TIME_LIMIT = 30000;// 30 seconds
+    String selectedTopic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class QuizActivity extends AppCompatActivity {
         option4 = findViewById(R.id.option4);
 
         // Retrieve selected topic
-        String selectedTopic = getIntent().getStringExtra("TOPIC");
+        selectedTopic = getIntent().getStringExtra("TOPIC");
 
         // Fetch questions from Firestore based on the selected topic
         fetchQuestions(selectedTopic);
@@ -154,6 +155,7 @@ public class QuizActivity extends AppCompatActivity {
         Intent intent = new Intent(QuizActivity.this, ScoreSummaryActivity.class);
         intent.putExtra("SCORE", score);
         intent.putExtra("TOTAL_QUESTIONS", questionsList.size());
+        intent.putExtra("TOPIC",selectedTopic);
         startActivity(intent);
         finish();
     }

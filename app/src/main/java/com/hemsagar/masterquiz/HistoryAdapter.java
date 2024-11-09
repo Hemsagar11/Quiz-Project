@@ -31,6 +31,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         HistoryItem historyItem = historyList.get(position);
         holder.scoreText.setText("Score: " + historyItem.getScore() + "/" + historyItem.getTotalQuestions());
         holder.dateText.setText("Date: " + formatDate(historyItem.getDate()));
+        holder.topic.setText("Topic: " + historyItem.getTopic());
+
     }
 
     @Override
@@ -39,12 +41,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     }
 
     public static class HistoryViewHolder extends RecyclerView.ViewHolder {
-        TextView scoreText, dateText;
+        TextView scoreText, dateText,topic;
 
         public HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
             scoreText = itemView.findViewById(R.id.scoreText);
             dateText = itemView.findViewById(R.id.dateText);
+            topic = itemView.findViewById(R.id.topic);
+
         }
     }
 

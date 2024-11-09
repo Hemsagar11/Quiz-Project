@@ -4,11 +4,13 @@ public class HistoryItem {
     private int score;
     private int totalQuestions;
     private long date;
+    private String topic;
 
-    public HistoryItem(int score, int totalQuestions, long date) {
+    public HistoryItem(int score, int totalQuestions, long date, String Topic) {
         this.score = score;
         this.totalQuestions = totalQuestions;
         this.date = date;
+        this.topic = Topic;
     }
 
     public int getScore() {
@@ -21,5 +23,9 @@ public class HistoryItem {
 
     public long getDate() {
         return date;
+    }
+
+    public String getTopic() {
+        return topic;
     }
 }

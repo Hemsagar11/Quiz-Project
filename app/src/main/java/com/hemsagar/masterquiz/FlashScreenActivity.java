@@ -20,7 +20,6 @@ public class FlashScreenActivity extends AppCompatActivity {
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        // Set up Firestore data (questions) after the splash screen delay, only if it's the first launch
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -30,7 +29,6 @@ public class FlashScreenActivity extends AppCompatActivity {
                     FirestoreSetupHelper firestoreSetupHelper = new FirestoreSetupHelper();
                     firestoreSetupHelper.setupFirestoreData();
 
-                    // Mark the app as not the first launch anymore
                     setFirstLaunchFlag(false);
                 }
 
@@ -42,12 +40,10 @@ public class FlashScreenActivity extends AppCompatActivity {
         }, 2000); // Splash screen delay (2 seconds)
     }
 
-    // Check if it's the first launch
     private boolean isFirstLaunch() {
         return sharedPreferences.getBoolean(FIRST_LAUNCH_KEY, true);
     }
 
-    // Set the first launch flag to false
     private void setFirstLaunchFlag(boolean isFirstLaunch) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(FIRST_LAUNCH_KEY, isFirstLaunch);
