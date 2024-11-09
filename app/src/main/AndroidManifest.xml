@@ -24,8 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuizActivity"/>
-        <activity android:name=".ResultActivity"/>
         <activity android:name=".ScoreSummaryActivity"/>
+        <activity android:name=".HistoryActivity"/>
     </application>
 
 </manifest>
