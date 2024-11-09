@@ -62,6 +62,7 @@ public class QuizActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         QuerySnapshot snapshot = task.getResult();
                         for (QueryDocumentSnapshot document : snapshot) {
+                            // Create a Question object from Firestore document
                             Question question = document.toObject(Question.class);
                             questionsList.add(question);
                         }
@@ -80,11 +81,14 @@ public class QuizActivity extends AppCompatActivity {
         if (currentQuestionIndex < questionsList.size()) {
             Question currentQuestion = questionsList.get(currentQuestionIndex);
 
+            // Set question text
             questionText.setText(currentQuestion.getQuestion());
-            option1.setText(currentQuestion.getOption1());
-            option2.setText(currentQuestion.getOption2());
-            option3.setText(currentQuestion.getOption3());
-            option4.setText(currentQuestion.getOption4());
+
+            // Set options
+            option1.setText(currentQuestion.getOptionA());
+            option2.setText(currentQuestion.getOptionB());
+            option3.setText(currentQuestion.getOptionC());
+            option4.setText(currentQuestion.getOptionD());
 
             // Clear previous selection and start timer for the question
             optionsGroup.clearCheck();
@@ -96,11 +100,11 @@ public class QuizActivity extends AppCompatActivity {
                     checkAnswer(currentQuestion, checkedId);
                 }
             });
-
         } else {
             endQuiz();
         }
     }
+
 
     private void startTimer() {
         if (countDownTimer != null) {
